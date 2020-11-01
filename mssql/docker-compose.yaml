@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  mssql-server:
+    image: mcr.microsoft.com/mssql/server:2019-CU8-ubuntu-16.04
+    container_name: mssql-server
+    volumes:
+      - mssql-data:/var/opt/mssql
+      - ./mssql-backup:/var/opt/mssql/backup
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=yourStrong(!)Password
+    ports:
+      - "1433:1433"
+
+volumes:
+  mssql-data:
